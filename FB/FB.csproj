@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0A78BAA3-A162-4F19-857B-9E98524061D9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FB</RootNamespace>
+    <AssemblyName>FB</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Facebook">
+      <HintPath>..\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="FbGraphApiWrapper">
+      <HintPath>..\FbGraphApiWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.Core">
+      <HintPath>..\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms">
+      <HintPath>..\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="FacebookLoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacebookLoginForm.Designer.cs">
+      <DependentUpon>FacebookLoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager.cs" />
+    <Compile Include="TodayEventsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TodayEventsForm.Designer.cs">
+      <DependentUpon>TodayEventsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MosaicCreatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MosaicCreatorForm.Designer.cs">
+      <DependentUpon>MosaicCreatorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PictureSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PictureSelectionForm.Designer.cs">
+      <DependentUpon>PictureSelectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewsFeedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewsFeedForm.Designer.cs">
+      <DependentUpon>NewsFeedForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForm.Designer.cs">
+      <DependentUpon>MasterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProfileForm.Designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\UserControlFacebook.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PostedItemExtentionMethods.cs" />
+    <Compile Include="UserControls\UserControlAlbum.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserControlAlbum.Designer.cs">
+      <DependentUpon>UserControlAlbum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlComment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserControlComment.Designer.cs">
+      <DependentUpon>UserControlComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlPost.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserControlPost.Designer.cs">
+      <DependentUpon>UserControlPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserControlProfile.Designer.cs">
+      <DependentUpon>UserControlProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlStatus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserControlStatus.Designer.cs">
+      <DependentUpon>UserControlStatus.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FacebookLoginForm.resx">
+      <DependentUpon>FacebookLoginForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TodayEventsForm.resx">
+      <DependentUpon>TodayEventsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MosaicCreatorForm.resx">
+      <DependentUpon>MosaicCreatorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PictureSelectionForm.resx">
+      <DependentUpon>PictureSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewsFeedForm.resx">
+      <DependentUpon>NewsFeedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForm.resx">
+      <DependentUpon>MasterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UserControls\UserControlAlbum.resx">
+      <DependentUpon>UserControlAlbum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserControlComment.resx">
+      <DependentUpon>UserControlComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserControlPost.resx">
+      <DependentUpon>UserControlPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserControlProfile.resx">
+      <DependentUpon>UserControlProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserControlStatus.resx">
+      <DependentUpon>UserControlStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\CommentLike.png" />
+    <Content Include="Resources\facebookIcon.jpg" />
+    <Content Include="Resources\facebookLogo.png" />
+    <Content Include="Resources\PostComment.png" />
+    <Content Include="Resources\PostLike.png" />
+    <Content Include="Resources\PostLikesAmount.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MosaicGenerator\MosaicGenerator.csproj">
+      <Project>{a46a131c-f0d3-4beb-a1de-14db63296ac6}</Project>
+      <Name>MosaicGenerator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
