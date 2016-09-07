@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace FB.UserControls
@@ -33,9 +28,15 @@ namespace FB.UserControls
 
         private void ButtonSubmitStatus_Click(object sender, EventArgs e)
         {
-            FacebookUser.PostStatus(RichTextBoxStatus.Text);
-
-            FacebookUser.ReFetch();
+            if (!string.IsNullOrWhiteSpace(RichTextBoxStatus.Text))
+            {
+                FacebookUser.PostStatus(RichTextBoxStatus.Text);
+                FacebookUser.ReFetch();
+            }
+            else
+            {
+                MessageBox.Show("You can not post an empty status");
+            }
 
             this.RichTextBoxStatus.ForeColor = SystemColors.InactiveCaption;
             this.RichTextBoxStatus.Text = "What's on your mind?";

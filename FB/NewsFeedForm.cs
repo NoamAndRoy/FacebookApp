@@ -24,45 +24,45 @@ namespace FB
 
             this.MaximumSize = new Size(882, int.MaxValue);
 
+            this.userControlStatus1.FacebookUser = i_User;
             this.userControlStatus1.ButtonSubmitStatus.Click += ButtonSubmitStatus_Click;
+
+            this.buttonNewsFeed.BackColor = Color.LightGray;
+
+            userControlStatus1.PictureBoxProfile.LoadAsync(m_User.PictureSqaureURL);
         }
 
         private void ButtonSubmitStatus_Click(object sender, EventArgs e)
         {
             panelPosts.Controls.Clear();
-            panelPosts.BeginInvoke(new Action(getPosts));
         }
 
         private void ProfileForm_Load(object sender, EventArgs e)
         {
-            this.buttonNewsFeed.BackColor = Color.LightGray;
-
-            userControlStatus1.PictureBoxProfile.LoadAsync(m_User.PictureSqaureURL);
-
-            panelPosts.BeginInvoke(new Action(getPosts));
+            Thread thread = new Thread(new ThreadStart(loadPosts));
+            thread.Start();
         }
 
-        private void getPosts()
+        private void loadPosts()
         {
-            int y = 0;
-
-            foreach (Post currentPost in m_User.NewsFeed)
-            {
-                if (currentPost.Message != null)
-                {
-                    UserControlPost post = new UserControlPost(currentPost, m_User);
-                    post.Location = new Point(0, y);
-                    
-                    y += post.Height + post.LabelPostContent.Height + 30;
-
-                    if (currentPost.Comments.Count > 0)
+            FacebookObjectCollection<Post> newsFeed = m_User.NewsFeed;
+            flowLayoutPanel1.Invoke(new Action(
+                () =>
                     {
-                        y += post.PanelComments.Height;
-                    }
+                        int y = 0;
 
-                    panelPosts.Controls.Add(post);
-                }
-            }
+                        foreach (Post currentPost in newsFeed)
+                        {
+                            if (currentPost.Message != null)
+                            {
+                                UserControlPost post = new UserControlPost(currentPost, m_User);
+                                flowLayoutPanel1.Controls.Add(post);
+
+                                post.Margin = new Padding(0, 0, 0, 30);
+                            }
+                        }
+                    }
+                ));
         }
     }
 }

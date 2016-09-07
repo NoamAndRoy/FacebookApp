@@ -17,7 +17,7 @@ namespace MosaicGenerator
 
         public void GenerateMosaicFromList(List<Bitmap> i_Bitmaps, int i_PixelSize)
         {
-            RGB[,] pixelatedMatrix = CreatePixelatedImage(Image, i_PixelSize);
+            RGB[,] pixelatedMatrix = createPixelatedImage(Image, i_PixelSize);
             List<TileBitmap> tileBitmaps = createTileBitmapsFromBitMaps(i_Bitmaps);
             tileBitmaps.Sort();
 
@@ -85,7 +85,7 @@ namespace MosaicGenerator
             return i_Bitmaps[index].Bitmap;
         }
 
-        private RGB[,] CreatePixelatedImage(Bitmap i_Image, int i_PixelSize)
+        private RGB[,] createPixelatedImage(Bitmap i_Image, int i_PixelSize)
         {
             int width = (int)Math.Ceiling((double)i_Image.Width / i_PixelSize);
             int height = (int)Math.Ceiling((double)i_Image.Height / i_PixelSize);

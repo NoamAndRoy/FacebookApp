@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
+using System.Threading;
 
 namespace FB.UserControls
 {
@@ -20,26 +21,6 @@ namespace FB.UserControls
             this.FacebookUser = i_User;
             FacebookPost = i_Post;
 
-            initPost();
-        }
-
-        private void initPost()
-        {
-            this.PictureBoxCommentProfile.LoadAsync(FacebookUser.PictureSqaureURL);
-            this.PictureBoxProfile.LoadAsync(FacebookPost.From.PictureSqaureURL);
-
-            this.LabelPostContent.MaximumSize = new Size(550, int.MaxValue);
-
-            this.LabelUserName.Text = FacebookPost.From.Name;
-            this.LabelTime.Text = FacebookPost.CreatedTime.ToString();
-            this.LabelLikesAmount.Text = FacebookPost.LikedBy.Count.ToString();
-            this.LabelPostContent.Text = FacebookPost.Message;
-
-            getComments();
-        }
-
-        private void UserControlPost_Load(object sender, EventArgs e)
-        {
             Color facebookBlue = Color.FromArgb(54, 88, 153);
 
             LabelUserName.ForeColor = facebookBlue;
@@ -60,6 +41,28 @@ namespace FB.UserControls
             ButtonPostLike.MouseHover += buttonPost_MouseHover;
 
             this.PanelBelowPostContent.Location = new Point(0, this.LabelPostContent.PreferredHeight + this.PanelBelowPostContent.Location.Y);
+        }
+
+        private void initPost()
+        {
+            this.PictureBoxCommentProfile.LoadAsync(FacebookUser.PictureSqaureURL);
+            this.PictureBoxProfile.LoadAsync(FacebookPost.From.PictureSqaureURL);
+
+            this.LabelPostContent.MaximumSize = new Size(550, int.MaxValue);
+
+            this.LabelUserName.Text = FacebookPost.From.Name;
+            this.LabelTime.Text = FacebookPost.CreatedTime.ToString();
+            this.LabelLikesAmount.Text = FacebookPost.LikedBy.Count.ToString();
+            this.LabelPostContent.Text = FacebookPost.Message;
+
+            Thread thread = new Thread(new ThreadStart(getComments));
+            thread.Start();
+
+        }
+
+        private void UserControlPost_Load(object sender, EventArgs e)
+        {
+            initPost();
         }
 
         private void buttonPost_MouseHover(object sender, EventArgs e)
@@ -138,22 +141,29 @@ namespace FB.UserControls
 
         private void getComments()
         {
-            int y = 0;
 
-            foreach (Comment currentComment in FacebookPost.Comments)
-            {
-                UserControlComment comment = new UserControlComment(currentComment);
-                comment.FacebookUser = FacebookUser;
-                comment.Location = new Point(0, y);
-                y += comment.Height + comment.LabelComment.Height - 20;
+            FacebookObjectCollection<Comment> comments = FacebookPost.Comments;
+            PanelComments.Invoke(new Action(
+                () =>
+                {
+                    int y = 0;
 
-                PanelComments.Controls.Add(comment);
-            }
+                    foreach (Comment currentComment in comments)
+                    {
+                        UserControlComment comment = new UserControlComment(currentComment);
+                        comment.FacebookUser = FacebookUser;
+                        comment.Location = new Point(0, y);
+                        y += comment.Height + comment.LabelComment.Height - 20;
 
-            if (FacebookPost.Comments.Count > 0)
-            {
-                this.PanelWriteComment.Location = new Point(0, y + 69);
-            }
+                        PanelComments.Controls.Add(comment);
+                    }
+
+                    if (FacebookPost.Comments.Count > 0)
+                    {
+                        this.PanelWriteComment.Location = new Point(0, y + 69);
+                    }
+                }
+                ));
         }
     }
 }
