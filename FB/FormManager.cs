@@ -50,7 +50,7 @@ namespace FB
 
             if(m_loggedInUser != null)
             {
-                newsFeedForm = new ProfileForm(m_loggedInUser);
+                newsFeedForm = new MosaicCreatorForm(m_loggedInUser);
             }
 
             return newsFeedForm;
