@@ -1,10 +1,5 @@
-﻿using System;
+﻿using FacebookWrapper.ObjectModel;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FacebookWrapper;
-using FacebookWrapper.ObjectModel;
 
 namespace FB
 {
@@ -55,7 +50,7 @@ namespace FB
 
             if(m_loggedInUser != null)
             {
-                newsFeedForm = new NewsFeedForm(m_loggedInUser);
+                newsFeedForm = new ProfileForm(m_loggedInUser);
             }
 
             return newsFeedForm;

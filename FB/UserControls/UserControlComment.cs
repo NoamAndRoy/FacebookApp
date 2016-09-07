@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using FacebookWrapper.ObjectModel;
+using System;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using FacebookWrapper.ObjectModel;
 
 namespace FB.UserControls
 {
@@ -17,25 +11,21 @@ namespace FB.UserControls
         public UserControlComment(Comment i_Comment)
         {
             InitializeComponent();
-            initComment(i_Comment);
+            this.FacebookComment = i_Comment;
         }
 
-        private void initComment(Comment i_Comment)
+        private void initComment()
         {
-            this.PictureBoxProfile.LoadAsync(i_Comment.From.PictureSqaureURL);
-
-            this.LabelComment.Text = i_Comment.Message;
-            this.LabelTime.Text = i_Comment.CreatedTime.ToString();
-            this.LabelLikeAmount.Text = i_Comment.LikedBy.Count.ToString();
-            this.LabelUserName.Text = i_Comment.From.Name;
-
-            this.FacebookComment = i_Comment;
-
+            this.LabelLikeAmount.DataBindings.Add("Text", FacebookComment.LikedBy.Count.ToString(), "");
             this.LabelComment.Location = new Point(this.LabelUserName.Width + this.LabelUserName.Location.X + 3, this.LabelComment.Location.Y);
         }
 
         private void UserControlComment_Load(object sender, EventArgs e)
         {
+            this.commentBindingSource.DataSource = FacebookComment;
+            this.userBindingSource.DataSource = FacebookUser;
+            initComment();
+
             Color facebookBlue = Color.FromArgb(54, 88, 153);
 
             LabelLike.ForeColor = facebookBlue;

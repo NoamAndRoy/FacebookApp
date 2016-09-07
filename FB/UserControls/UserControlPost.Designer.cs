@@ -29,8 +29,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlPost));
             this.PictureBoxProfile = new System.Windows.Forms.PictureBox();
+            this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.LabelUserName = new System.Windows.Forms.Label();
             this.LabelTime = new System.Windows.Forms.Label();
             this.LabelPostContent = new System.Windows.Forms.Label();
@@ -43,21 +45,25 @@
             this.panelCommentTextBox = new System.Windows.Forms.Panel();
             this.TextBoxComment = new System.Windows.Forms.TextBox();
             this.PictureBoxCommentProfile = new System.Windows.Forms.PictureBox();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ButtonPostLike = new System.Windows.Forms.Button();
             this.ButtonPostComment = new System.Windows.Forms.Button();
             this.Panel1 = new System.Windows.Forms.Panel();
             this.PanelBelowPostContent = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
             this.PanelPostLikeAmount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLikesAmount)).BeginInit();
             this.PanelWriteComment.SuspendLayout();
             this.panelCommentTextBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxCommentProfile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.PanelBelowPostContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // PictureBoxProfile
             // 
+            this.PictureBoxProfile.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.postBindingSource, "From.ImageSmall", true));
             this.PictureBoxProfile.Location = new System.Drawing.Point(12, 12);
             this.PictureBoxProfile.Margin = new System.Windows.Forms.Padding(0);
             this.PictureBoxProfile.Name = "PictureBoxProfile";
@@ -66,9 +72,14 @@
             this.PictureBoxProfile.TabIndex = 2;
             this.PictureBoxProfile.TabStop = false;
             // 
+            // postBindingSource
+            // 
+            this.postBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
+            // 
             // LabelUserName
             // 
             this.LabelUserName.AutoSize = true;
+            this.LabelUserName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "From.Name", true));
             this.LabelUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(177)));
             this.LabelUserName.Location = new System.Drawing.Point(62, 14);
             this.LabelUserName.Margin = new System.Windows.Forms.Padding(0);
@@ -80,6 +91,7 @@
             // LabelTime
             // 
             this.LabelTime.AutoSize = true;
+            this.LabelTime.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "CreatedTime", true));
             this.LabelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(177)));
             this.LabelTime.Location = new System.Drawing.Point(62, 34);
             this.LabelTime.Name = "LabelTime";
@@ -91,6 +103,7 @@
             // 
             this.LabelPostContent.AutoSize = true;
             this.LabelPostContent.BackColor = System.Drawing.Color.White;
+            this.LabelPostContent.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Message", true));
             this.LabelPostContent.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(177)));
             this.LabelPostContent.Location = new System.Drawing.Point(10, 57);
             this.LabelPostContent.Name = "LabelPostContent";
@@ -151,7 +164,7 @@
             this.PanelComments.Size = new System.Drawing.Size(0, 0);
             this.PanelComments.TabIndex = 16;
             // 
-            // panelWriteComment
+            // PanelWriteComment
             // 
             this.PanelWriteComment.AutoScroll = true;
             this.PanelWriteComment.AutoSize = true;
@@ -161,7 +174,7 @@
             this.PanelWriteComment.Controls.Add(this.PictureBoxCommentProfile);
             this.PanelWriteComment.Location = new System.Drawing.Point(0, 78);
             this.PanelWriteComment.Margin = new System.Windows.Forms.Padding(0);
-            this.PanelWriteComment.Name = "panelWriteComment";
+            this.PanelWriteComment.Name = "PanelWriteComment";
             this.PanelWriteComment.Size = new System.Drawing.Size(751, 56);
             this.PanelWriteComment.TabIndex = 17;
             // 
@@ -196,6 +209,7 @@
             // 
             // PictureBoxCommentProfile
             // 
+            this.PictureBoxCommentProfile.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.userBindingSource, "ImageSmall", true));
             this.PictureBoxCommentProfile.Location = new System.Drawing.Point(8, 12);
             this.PictureBoxCommentProfile.Margin = new System.Windows.Forms.Padding(8, 12, 8, 12);
             this.PictureBoxCommentProfile.Name = "PictureBoxCommentProfile";
@@ -203,6 +217,10 @@
             this.PictureBoxCommentProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PictureBoxCommentProfile.TabIndex = 1;
             this.PictureBoxCommentProfile.TabStop = false;
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.User);
             // 
             // ButtonPostLike
             // 
@@ -247,7 +265,7 @@
             this.Panel1.Size = new System.Drawing.Size(727, 1);
             this.Panel1.TabIndex = 11;
             // 
-            // panelBelowPostContent
+            // PanelBelowPostContent
             // 
             this.PanelBelowPostContent.AutoSize = true;
             this.PanelBelowPostContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -261,7 +279,7 @@
             this.PanelBelowPostContent.Controls.Add(this.Panel2);
             this.PanelBelowPostContent.Location = new System.Drawing.Point(0, 56);
             this.PanelBelowPostContent.Margin = new System.Windows.Forms.Padding(0);
-            this.PanelBelowPostContent.Name = "panelBelowPostContent";
+            this.PanelBelowPostContent.Name = "PanelBelowPostContent";
             this.PanelBelowPostContent.Size = new System.Drawing.Size(752, 134);
             this.PanelBelowPostContent.TabIndex = 14;
             // 
@@ -283,6 +301,7 @@
             this.Size = new System.Drawing.Size(752, 190);
             this.Load += new System.EventHandler(this.UserControlPost_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).EndInit();
             this.PanelPostLikeAmount.ResumeLayout(false);
             this.PanelPostLikeAmount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLikesAmount)).EndInit();
@@ -291,6 +310,7 @@
             this.panelCommentTextBox.ResumeLayout(false);
             this.panelCommentTextBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxCommentProfile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.PanelBelowPostContent.ResumeLayout(false);
             this.PanelBelowPostContent.PerformLayout();
             this.ResumeLayout(false);
@@ -316,5 +336,7 @@
         public System.Windows.Forms.Button ButtonPostComment;
         private System.Windows.Forms.Panel Panel1;
         public System.Windows.Forms.Panel PanelBelowPostContent;
+        private System.Windows.Forms.BindingSource postBindingSource;
+        private System.Windows.Forms.BindingSource userBindingSource;
     }
 }

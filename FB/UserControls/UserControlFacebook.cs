@@ -10,5 +10,9 @@ namespace FB.UserControls
     public class UserControlFacebook : UserControl
     {
         public User FacebookUser { get; set; }
+
+        private void InitializeComponent()
+        {
+        }
     }
 }

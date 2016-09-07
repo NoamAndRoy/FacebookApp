@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using FacebookWrapper.ObjectModel;
+using System;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using FacebookWrapper.ObjectModel;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace FB.UserControls
 {
@@ -30,7 +25,7 @@ namespace FB.UserControls
 
             if (FacebookPost.isLikedByUser(FacebookUser))
             {
-                this.ButtonPostLike.BackColor = System.Drawing.SystemColors.ButtonFace;
+                this.ButtonPostLike.BackColor = SystemColors.ButtonFace;
             }
             else
             {
@@ -45,23 +40,17 @@ namespace FB.UserControls
 
         private void initPost()
         {
-            this.PictureBoxCommentProfile.LoadAsync(FacebookUser.PictureSqaureURL);
-            this.PictureBoxProfile.LoadAsync(FacebookPost.From.PictureSqaureURL);
-
             this.LabelPostContent.MaximumSize = new Size(550, int.MaxValue);
-
-            this.LabelUserName.Text = FacebookPost.From.Name;
-            this.LabelTime.Text = FacebookPost.CreatedTime.ToString();
-            this.LabelLikesAmount.Text = FacebookPost.LikedBy.Count.ToString();
-            this.LabelPostContent.Text = FacebookPost.Message;
+            this.LabelLikesAmount.DataBindings.Add("Text", FacebookPost.LikedBy.Count.ToString(), "");
 
             Thread thread = new Thread(new ThreadStart(getComments));
             thread.Start();
-
         }
 
         private void UserControlPost_Load(object sender, EventArgs e)
         {
+            this.postBindingSource.DataSource = FacebookPost;
+            this.userBindingSource.DataSource = FacebookUser;
             initPost();
         }
 
@@ -104,7 +93,7 @@ namespace FB.UserControls
             }
             else
             {
-                this.ButtonPostLike.BackColor = System.Drawing.SystemColors.ButtonFace;
+                this.ButtonPostLike.BackColor = SystemColors.ButtonFace;
                 FacebookPost.Like();
             }
           
@@ -122,7 +111,7 @@ namespace FB.UserControls
 
                 FacebookUser.ReFetch();
 
-                getComments();
+                //getComments();
 
                 UserControlPost post = this;
                 Control parent = this.Parent;
@@ -132,7 +121,7 @@ namespace FB.UserControls
                 {
                     post.Location = new Point(0, y);
 
-                    y += post.Height + 30;
+                    y += post.Height + 300;
 
                     post = parent.GetNextControl(post, true) as UserControlPost;
                 }

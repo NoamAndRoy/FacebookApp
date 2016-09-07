@@ -2,9 +2,9 @@
 <AppSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <RememberMe>true</RememberMe>
   <WindowLocation>
-    <X>-8</X>
-    <Y>-8</Y>
+    <X>232</X>
+    <Y>54</Y>
   </WindowLocation>
-  <WindowHeight>876</WindowHeight>
+  <WindowHeight>836</WindowHeight>
   <UserAccessToken>EAADuY8XJqQgBALfFdoykkjyJZCIXXiVnWM7KXNfx9jb523TGK6czJeTjs3ZC0sSNN1QTohaIZAZBYnDlvXvV9GaroTDOaZBGJVEnYbSmOAGf31Hwe1IYQSUarAnZCcwGO9Sm5nFWWCv4xGoomjhZCCv6vYZAczGhF4iyvaxH5Jn3mwZDZD</UserAccessToken>
 </AppSettings>

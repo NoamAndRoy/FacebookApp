@@ -35,16 +35,18 @@
             this.PictureBoxProfileImage = new System.Windows.Forms.PictureBox();
             this.panelCover = new System.Windows.Forms.Panel();
             this.PictureBoxCoverPhoto = new System.Windows.Forms.PictureBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelProfileImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfileImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxCoverPhoto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelLoggedUserName
             // 
             this.LabelLoggedUserName.AutoSize = true;
             this.LabelLoggedUserName.BackColor = System.Drawing.Color.Transparent;
+            this.LabelLoggedUserName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Name", true));
             this.LabelLoggedUserName.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.LabelLoggedUserName.ForeColor = System.Drawing.Color.White;
             this.LabelLoggedUserName.Location = new System.Drawing.Point(198, 100);
@@ -67,6 +69,7 @@
             // 
             // PictureBoxProfileImage
             // 
+            this.PictureBoxProfileImage.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.userBindingSource, "ImageLarge", true));
             this.PictureBoxProfileImage.Location = new System.Drawing.Point(4, 4);
             this.PictureBoxProfileImage.Margin = new System.Windows.Forms.Padding(0);
             this.PictureBoxProfileImage.Name = "PictureBoxProfileImage";
@@ -95,11 +98,9 @@
             this.PictureBoxCoverPhoto.TabIndex = 8;
             this.PictureBoxCoverPhoto.TabStop = false;
             // 
-            // contextMenuStrip1
+            // userBindingSource
             // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(67, 4);
+            this.userBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.User);
             // 
             // UserControlProfile
             // 
@@ -110,11 +111,12 @@
             this.Controls.Add(this.panelCover);
             this.Controls.Add(this.PictureBoxCoverPhoto);
             this.Name = "UserControlProfile";
-            this.Size = new System.Drawing.Size(851, 611);
+            this.Size = new System.Drawing.Size(871, 611);
             this.Load += new System.EventHandler(this.UserControlProfile_Load);
             this.panelProfileImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfileImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxCoverPhoto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,9 +125,9 @@
         #endregion
         private System.Windows.Forms.Panel panelProfileImage;
         private System.Windows.Forms.Panel panelCover;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         public System.Windows.Forms.Label LabelLoggedUserName;
         public System.Windows.Forms.PictureBox PictureBoxProfileImage;
         public System.Windows.Forms.PictureBox PictureBoxCoverPhoto;
+        private System.Windows.Forms.BindingSource userBindingSource;
     }
 }

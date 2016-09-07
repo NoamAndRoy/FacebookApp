@@ -29,8 +29,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlComment));
             this.PictureBoxProfile = new System.Windows.Forms.PictureBox();
+            this.commentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelBelowCommentContent = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.LabelTime = new System.Windows.Forms.Label();
@@ -38,19 +40,27 @@
             this.LabelLikeAmount = new System.Windows.Forms.Label();
             this.LabelComment = new System.Windows.Forms.Label();
             this.LabelUserName = new System.Windows.Forms.Label();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commentBindingSource)).BeginInit();
             this.panelBelowCommentContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // PictureBoxProfile
             // 
+            this.PictureBoxProfile.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.commentBindingSource, "From.ImageSmall", true));
             this.PictureBoxProfile.Location = new System.Drawing.Point(8, 8);
             this.PictureBoxProfile.Name = "PictureBoxProfile";
             this.PictureBoxProfile.Size = new System.Drawing.Size(32, 32);
             this.PictureBoxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PictureBoxProfile.TabIndex = 0;
             this.PictureBoxProfile.TabStop = false;
+            // 
+            // commentBindingSource
+            // 
+            this.commentBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Comment);
             // 
             // panelBelowCommentContent
             // 
@@ -79,6 +89,7 @@
             // 
             this.LabelTime.AutoSize = true;
             this.LabelTime.BackColor = System.Drawing.Color.Transparent;
+            this.LabelTime.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.commentBindingSource, "CreatedTime", true));
             this.LabelTime.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.LabelTime.Location = new System.Drawing.Point(126, 0);
             this.LabelTime.Name = "LabelTime";
@@ -115,6 +126,7 @@
             // 
             this.LabelComment.AutoSize = true;
             this.LabelComment.BackColor = System.Drawing.Color.Transparent;
+            this.LabelComment.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.commentBindingSource, "Message", true));
             this.LabelComment.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.LabelComment.Location = new System.Drawing.Point(102, 10);
             this.LabelComment.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
@@ -127,6 +139,7 @@
             // 
             this.LabelUserName.AutoSize = true;
             this.LabelUserName.BackColor = System.Drawing.Color.Transparent;
+            this.LabelUserName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.commentBindingSource, "From.Name", true));
             this.LabelUserName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(177)));
             this.LabelUserName.Location = new System.Drawing.Point(46, 10);
             this.LabelUserName.Name = "LabelUserName";
@@ -134,10 +147,15 @@
             this.LabelUserName.TabIndex = 1;
             this.LabelUserName.Text = "label1";
             // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.User);
+            // 
             // UserControlComment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -152,9 +170,11 @@
             this.Size = new System.Drawing.Size(752, 47);
             this.Load += new System.EventHandler(this.UserControlComment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commentBindingSource)).EndInit();
             this.panelBelowCommentContent.ResumeLayout(false);
             this.panelBelowCommentContent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,5 +189,7 @@
         public System.Windows.Forms.Label LabelComment;
         public System.Windows.Forms.Label LabelTime;
         private System.Windows.Forms.Panel panelBelowCommentContent;
+        private System.Windows.Forms.BindingSource commentBindingSource;
+        private System.Windows.Forms.BindingSource userBindingSource;
     }
 }

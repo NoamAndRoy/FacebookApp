@@ -46,17 +46,15 @@ namespace FB
         private void loadPosts()
         {
             FacebookObjectCollection<Post> newsFeed = m_User.NewsFeed;
-            flowLayoutPanel1.Invoke(new Action(
+            panelPosts.Invoke(new Action(
                 () =>
                     {
-                        int y = 0;
-
                         foreach (Post currentPost in newsFeed)
                         {
                             if (currentPost.Message != null)
                             {
                                 UserControlPost post = new UserControlPost(currentPost, m_User);
-                                flowLayoutPanel1.Controls.Add(post);
+                                panelPosts.Controls.Add(post);
 
                                 post.Margin = new Padding(0, 0, 0, 30);
                             }

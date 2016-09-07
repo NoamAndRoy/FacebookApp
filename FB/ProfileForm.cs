@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
-using FacebookWrapper;
 using FB.UserControls;
 
 namespace FB
@@ -31,43 +24,34 @@ namespace FB
         private void ButtonSubmitStatus_Click(object sender, EventArgs e)
         {
             panelPosts.Controls.Clear();
-            getPosts();
+            loadPosts();
         }
 
         private void ProfileForm_Load(object sender, EventArgs e)
         {
-            userControlProfile1.PictureBoxCoverPhoto.LoadAsync(m_User.Cover.SourceURL);
-            userControlProfile1.PictureBoxProfileImage.LoadAsync(m_User.PictureLargeURL);
-            userControlProfile1.LabelLoggedUserName.Text = m_User.Name;
-
-            userControlStatus1.PictureBoxProfile.LoadAsync(m_User.PictureSqaureURL);
-
             this.buttonProfile.BackColor = Color.LightGray;
 
-            panelPosts.BeginInvoke(new Action(getPosts));
+            panelPosts.BeginInvoke(new Action(loadPosts));
         }
 
-        private void getPosts()
+        private void loadPosts()
         {
-            int y = 0;
-
-            foreach (Post currentPost in m_User.WallPosts)
-            {
-                if (currentPost.Message != null)
+            FacebookObjectCollection<Post> newsFeed = m_User.NewsFeed;
+            panelPosts.Invoke(new Action(
+                () =>
                 {
-                    UserControlPost post = new UserControlPost(currentPost, m_User);
-                    post.Location = new Point(0, y);
-                    
-                    y += post.Height + post.LabelPostContent.Height + 30;
-
-                    if (currentPost.Comments.Count > 0)
+                    foreach (Post currentPost in newsFeed)
                     {
-                        y += post.PanelComments.Height;
-                    }
+                        if (currentPost.Message != null)
+                        {
+                            UserControlPost post = new UserControlPost(currentPost, m_User);
+                            panelPosts.Controls.Add(post);
 
-                    panelPosts.Controls.Add(post);
+                            post.Margin = new Padding(0, 0, 0, 30);
+                        }
+                    }
                 }
-            }
+             ));
         }
     }
 }
