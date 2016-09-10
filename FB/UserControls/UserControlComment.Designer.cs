@@ -108,7 +108,7 @@
             this.LabelLike.TabIndex = 2;
             this.LabelLike.Text = "Like";
             this.LabelLike.Click += new System.EventHandler(this.LabelLike_Click);
-            this.LabelLike.MouseHover += new System.EventHandler(this.labelLike_MouseHover);
+            this.LabelLike.MouseHover += new System.EventHandler(this.LabelLike_MouseHover);
             // 
             // LabelLikeAmount
             // 

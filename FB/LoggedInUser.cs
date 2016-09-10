@@ -1,9 +1,4 @@
-﻿using System;
-using System.Drawing;
-using FacebookWrapper.ObjectModel;
-using FacebookWrapper;
-using static FacebookWrapper.ObjectModel.User;
-using static FacebookWrapper.ObjectModel.DynamicWrapper;
+﻿using FacebookWrapper;
 
 namespace FB
 {
@@ -75,7 +70,5 @@ namespace FB
         private LoggedInUser()
         {
         }
-
-       
     }
 }

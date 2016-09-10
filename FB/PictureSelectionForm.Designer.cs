@@ -54,7 +54,7 @@
             this.OKButton.TabIndex = 0;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
-            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
+            this.OKButton.Click += new System.EventHandler(this.oKButton_Click);
             // 
             // PictureSelectionForm
             // 
@@ -67,7 +67,7 @@
             this.Name = "PictureSelectionForm";
             this.ShowInTaskbar = false;
             this.Text = "PictureSelectionForm";
-            this.Load += new System.EventHandler(this.PictureSelectionForm_Load);
+            this.Load += new System.EventHandler(this.pictureSelectionForm_Load);
             this.AlbumsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 

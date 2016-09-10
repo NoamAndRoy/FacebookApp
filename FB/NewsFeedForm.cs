@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
-using FacebookWrapper;
 using FB.UserControls;
 
 namespace FB
@@ -24,14 +18,14 @@ namespace FB
 
             this.MaximumSize = new Size(882, int.MaxValue);
 
-            this.userControlStatus1.ButtonSubmitStatus.Click += ButtonSubmitStatus_Click;
+            this.userControlStatus1.ButtonSubmitStatus.Click += buttonSubmitStatus_Click;
 
             this.buttonNewsFeed.BackColor = Color.LightGray;
 
             userControlStatus1.PictureBoxProfile.LoadAsync(LoggedInUser.Instance.PictureSqaureURL);
         }
 
-        private void ButtonSubmitStatus_Click(object sender, EventArgs e)
+        private void buttonSubmitStatus_Click(object sender, EventArgs e)
         {
             panelPosts.Controls.Clear();
         }
@@ -59,9 +53,7 @@ namespace FB
                                 post.Margin = new Padding(0, 0, 0, 30);
                             }
                         }
-                    }
-
-                ));
+                    }));
         }
     }
 }

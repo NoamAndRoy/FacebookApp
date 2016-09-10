@@ -173,7 +173,7 @@
             this.MinimumSize = new System.Drawing.Size(882, 664);
             this.Name = "TodayEventsForm";
             this.Text = "MosaicCreatorForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TodayEventsForm_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.todayEventsForm_FormClosing);
             this.Controls.SetChildIndex(this.panelMain, 0);
             this.panelMain.ResumeLayout(false);
             this.panelTodayEvents.ResumeLayout(false);

@@ -169,7 +169,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Facebook";
-            this.Load += new System.EventHandler(this.MasterForm_Load);
+            this.Load += new System.EventHandler(this.masterForm_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebookLogo)).EndInit();

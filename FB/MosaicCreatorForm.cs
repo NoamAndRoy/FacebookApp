@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
-using FacebookWrapper.ObjectModel;
 using MosaicGenerator;
 
 namespace FB
@@ -89,7 +88,7 @@ namespace FB
             textBoxTitle.Text = string.Empty;
         }
 
-        private void MosaicCreatorForm_Load(object sender, EventArgs e)
+        private void mosaicCreatorForm_Load(object sender, EventArgs e)
         {
             this.buttonMosiac.BackColor = Color.LightGray;
         }

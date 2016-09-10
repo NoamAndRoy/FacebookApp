@@ -36,7 +36,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "UserControlFacebook";
-            this.Load += new System.EventHandler(this.UserControlFacebook_Load);
+            this.Load += new System.EventHandler(this.userControlFacebook_Load);
             this.ResumeLayout(false);
 
         }

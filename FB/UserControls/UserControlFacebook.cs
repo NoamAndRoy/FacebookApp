@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace FB.UserControls
@@ -18,7 +12,7 @@ namespace FB.UserControls
             InitializeComponent();
         }
 
-        private void UserControlFacebook_Load(object sender, EventArgs e)
+        private void userControlFacebook_Load(object sender, EventArgs e)
         {
             if (!m_Initialized)
             {

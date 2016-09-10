@@ -26,7 +26,7 @@ namespace FB.UserControls
             }
         }
 
-        private void ButtonSubmitStatus_Click(object sender, EventArgs e)
+        private void buttonSubmitStatus_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(RichTextBoxStatus.Text))
             {

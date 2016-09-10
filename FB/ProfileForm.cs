@@ -16,10 +16,10 @@ namespace FB
 
             this.BackColor = Color.FromArgb(233, 235, 238);
 
-            this.userControlStatus1.ButtonSubmitStatus.Click += ButtonSubmitStatus_Click;
+            this.userControlStatus1.ButtonSubmitStatus.Click += buttonSubmitStatus_Click;
         }
 
-        private void ButtonSubmitStatus_Click(object sender, EventArgs e)
+        private void buttonSubmitStatus_Click(object sender, EventArgs e)
         {
             panelPosts.Controls.Clear();
             loadPosts();

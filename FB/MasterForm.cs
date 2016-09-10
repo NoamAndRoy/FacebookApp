@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
-using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
 
 namespace FB
@@ -25,7 +18,7 @@ namespace FB
             InitializeComponent();
         }
 
-        private void MasterForm_Load(object sender, EventArgs e)
+        private void masterForm_Load(object sender, EventArgs e)
         {
             if (!m_Initialized)
             {

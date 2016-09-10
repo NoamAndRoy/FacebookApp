@@ -18,7 +18,7 @@ namespace FB
             SelectedImages = new List<Image>();
         }
 
-        private void PictureSelectionForm_Load(object sender, EventArgs e)
+        private void pictureSelectionForm_Load(object sender, EventArgs e)
         {
             Thread thread = new Thread(new ThreadStart(initSelectionForm));
             thread.Start();
@@ -42,13 +42,13 @@ namespace FB
 
                             AlbumsPanel.Controls.Add(userAlbum);
 
-                            userAlbum.ImagesPanel.ControlAdded += UserAlbum_ControlAdded;
+                            userAlbum.ImagesPanel.ControlAdded += userAlbum_ControlAdded;
                         }
                     }
                 }));
         }
 
-        private void UserAlbum_ControlAdded(object sender, ControlEventArgs e)
+        private void userAlbum_ControlAdded(object sender, ControlEventArgs e)
         {
             if(e.Control is PictureBox)
             {
@@ -71,7 +71,7 @@ namespace FB
             }
         }
 
-        private void OKButton_Click(object sender, EventArgs e)
+        private void oKButton_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
         }

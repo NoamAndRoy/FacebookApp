@@ -204,8 +204,8 @@
             this.TextBoxComment.TabIndex = 2;
             this.TextBoxComment.Text = "Write a comment...";
             this.TextBoxComment.Enter += new System.EventHandler(this.textBoxComment_Enter);
-            this.TextBoxComment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxComment_KeyDown);
-            this.TextBoxComment.Leave += new System.EventHandler(this.TextBoxComment_Leave);
+            this.TextBoxComment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxComment_KeyDown);
+            this.TextBoxComment.Leave += new System.EventHandler(this.textBoxComment_Leave);
             // 
             // PictureBoxCommentProfile
             // 
@@ -237,7 +237,7 @@
             this.ButtonPostLike.Text = "Like";
             this.ButtonPostLike.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonPostLike.UseVisualStyleBackColor = true;
-            this.ButtonPostLike.Click += new System.EventHandler(this.ButtonPostLike_Click);
+            this.ButtonPostLike.Click += new System.EventHandler(this.buttonPostLike_Click);
             // 
             // ButtonPostComment
             // 
@@ -254,7 +254,7 @@
             this.ButtonPostComment.Text = "Comment";
             this.ButtonPostComment.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonPostComment.UseVisualStyleBackColor = true;
-            this.ButtonPostComment.Click += new System.EventHandler(this.ButtonPostComment_Click);
+            this.ButtonPostComment.Click += new System.EventHandler(this.buttonPostComment_Click);
             // 
             // Panel1
             // 

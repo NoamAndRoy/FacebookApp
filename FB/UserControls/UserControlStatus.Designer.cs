@@ -74,7 +74,7 @@
             this.ButtonSubmitStatus.TabIndex = 2;
             this.ButtonSubmitStatus.Text = "Post";
             this.ButtonSubmitStatus.UseVisualStyleBackColor = false;
-            this.ButtonSubmitStatus.Click += new System.EventHandler(this.ButtonSubmitStatus_Click);
+            this.ButtonSubmitStatus.Click += new System.EventHandler(this.buttonSubmitStatus_Click);
             // 
             // panel1
             // 

@@ -47,7 +47,7 @@ namespace FB.UserControls
             }
         }
 
-        private void labelLike_MouseHover(object sender, EventArgs e)
+        private void LabelLike_MouseHover(object sender, EventArgs e)
         {
             Font underline = new Font(LabelLike.Font, FontStyle.Underline);
             LabelLike.Font = underline;

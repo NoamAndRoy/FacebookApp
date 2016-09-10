@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace FB.UserControls
+﻿namespace FB.UserControls
 {
     public partial class UserControlProfile : UserControlFacebook
     {

@@ -69,7 +69,7 @@ namespace FB.UserControls
             this.TextBoxComment.Text = string.Empty;
         }
 
-        private void TextBoxComment_Leave(object sender, EventArgs e)
+        private void textBoxComment_Leave(object sender, EventArgs e)
         {
             if (this.TextBoxComment.Text == string.Empty)
             {
@@ -78,12 +78,12 @@ namespace FB.UserControls
             }
         }
 
-        private void ButtonPostComment_Click(object sender, EventArgs e)
+        private void buttonPostComment_Click(object sender, EventArgs e)
         {
             this.TextBoxComment.Focus();
         }
 
-        private void ButtonPostLike_Click(object sender, EventArgs e)
+        private void buttonPostLike_Click(object sender, EventArgs e)
         {
             if(FacebookPost.IsLikedByLoggedInUser())
             {
@@ -100,7 +100,7 @@ namespace FB.UserControls
             LabelLikesAmount.Text = FacebookPost.LikedBy.Count.ToString();
         }
 
-        private void TextBoxComment_KeyDown(object sender, KeyEventArgs e)
+        private void textBoxComment_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {

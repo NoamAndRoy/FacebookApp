@@ -279,7 +279,7 @@
             this.MinimumSize = new System.Drawing.Size(882, 666);
             this.Name = "MosaicCreatorForm";
             this.Text = "MosaicCreatorForm";
-            this.Load += new System.EventHandler(this.MosaicCreatorForm_Load);
+            this.Load += new System.EventHandler(this.mosaicCreatorForm_Load);
             this.Controls.SetChildIndex(this.panelMain, 0);
             this.panelMain.ResumeLayout(false);
             this.panelSubmitMosiac.ResumeLayout(false);

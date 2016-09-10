@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using System.IO;
 using System.Threading;
 using FacebookWrapper.ObjectModel;
-using MosaicGenerator;
 using GMap.NET.WindowsForms;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms.Markers;
@@ -83,7 +81,7 @@ namespace FB
             gMapControlEvents.Zoom = 1;
         }
 
-        private void TodayEventsForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void todayEventsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             gMapControlEvents.Manager.CancelTileCaching();
         }
