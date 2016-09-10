@@ -174,7 +174,6 @@
             this.Name = "TodayEventsForm";
             this.Text = "MosaicCreatorForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TodayEventsForm_FormClosing);
-            this.Load += new System.EventHandler(this.TodayEventsForm_Load);
             this.Controls.SetChildIndex(this.panelMain, 0);
             this.panelMain.ResumeLayout(false);
             this.panelTodayEvents.ResumeLayout(false);

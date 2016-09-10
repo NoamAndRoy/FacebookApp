@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace FB.UserControls
 {
@@ -9,10 +10,10 @@ namespace FB.UserControls
             InitializeComponent();
         }
 
-        private void UserControlProfile_Load(object sender, EventArgs e)
+        protected override void initialize()
         {
-            userBindingSource.DataSource = FacebookUser;
-            PictureBoxCoverPhoto.DataBindings.Add("ImageLocation", FacebookUser.Cover, "SourceURL");
+            userBindingSource.DataSource = LoggedInUser.Instance;
+            PictureBoxCoverPhoto.DataBindings.Add("ImageLocation", LoggedInUser.Instance.Cover, "SourceURL");
 
             LabelLoggedUserName.Parent = PictureBoxCoverPhoto;
         }

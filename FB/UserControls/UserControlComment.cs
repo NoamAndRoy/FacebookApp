@@ -1,6 +1,6 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Drawing;
+using FacebookWrapper.ObjectModel;
 
 namespace FB.UserControls
 {
@@ -16,14 +16,14 @@ namespace FB.UserControls
 
         private void initComment()
         {
-            this.LabelLikeAmount.DataBindings.Add("Text", FacebookComment.LikedBy.Count.ToString(), "");
+            this.LabelLikeAmount.DataBindings.Add("Text", FacebookComment.LikedBy.Count.ToString(), string.Empty);
             this.LabelComment.Location = new Point(this.LabelUserName.Width + this.LabelUserName.Location.X + 3, this.LabelComment.Location.Y);
         }
 
-        private void UserControlComment_Load(object sender, EventArgs e)
+        protected override void initialize()
         {
             this.commentBindingSource.DataSource = FacebookComment;
-            this.userBindingSource.DataSource = FacebookUser;
+            this.userBindingSource.DataSource = LoggedInUser.Instance;
             initComment();
 
             Color facebookBlue = Color.FromArgb(54, 88, 153);
@@ -34,10 +34,10 @@ namespace FB.UserControls
 
             LabelComment.ForeColor = Color.FromArgb(29, 33, 41);
             LabelTime.ForeColor = Color.FromArgb(144, 148, 156);
-            
+
             this.panelBelowCommentContent.Location = new Point(0, this.LabelComment.PreferredHeight + this.panelBelowCommentContent.Location.Y);
 
-            if (FacebookComment.isLikedByUser(FacebookUser))
+            if (FacebookComment.IsLikedByLoggedInUser())
             {
                 this.LabelLike.BackColor = Color.LightGray;
             }
@@ -55,7 +55,7 @@ namespace FB.UserControls
 
         private void LabelLike_Click(object sender, EventArgs e)
         {
-            if (FacebookComment.isLikedByUser(FacebookUser))
+            if (FacebookComment.IsLikedByLoggedInUser())
             {
                 this.LabelLike.BackColor = Color.WhiteSmoke;
                 FacebookComment.Unlike();
@@ -66,7 +66,7 @@ namespace FB.UserControls
                 FacebookComment.Like();
             }
 
-            FacebookUser.ReFetch();
+            LoggedInUser.Instance.ReFetch();
             LabelLikeAmount.Text = FacebookComment.LikedBy.Count.ToString();
         }
     }

@@ -12,27 +12,29 @@ using FacebookWrapper;
 
 namespace FB
 {
-    public partial class MasterForm : Form
+    public abstract partial class MasterForm : Form
     {
         public MasterForm FormToOpen { get; private set; }
 
         public bool Logout { get; set; }
 
-        protected User m_User;
+        private bool m_Initialized = false;
 
-        private MasterForm() // For Designer View
+        public MasterForm()
         {
             InitializeComponent();
-        }
-
-        public MasterForm(User i_User)
-        {
-            InitializeComponent();
-
-            this.m_User = i_User;
         }
 
         private void MasterForm_Load(object sender, EventArgs e)
+        {
+            if (!m_Initialized)
+            {
+                initialize();
+                m_Initialized = true;
+            }
+        }
+
+        protected virtual void initialize()
         {
             Color facebookColor = Color.FromArgb(72, 103, 170);
 
@@ -45,9 +47,9 @@ namespace FB
             this.panelLogo.BackColor = facebookColor;
 
             // For Designer View
-            if (m_User != null) 
+            if (LoggedInUser.Instance != null)
             {
-                this.buttonProfile.Text = m_User.Name;
+                this.buttonProfile.Text = LoggedInUser.Instance.Name;
             }
 
             this.MaximumSize = new Size(882, SystemInformation.MaxWindowTrackSize.Height);
@@ -56,34 +58,45 @@ namespace FB
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            FacebookWrapper.FacebookService.Logout(this.Close);
+            FacebookService.Logout(this.Close);
             Logout = true;
         }
 
         private void buttonProfile_Click(object sender, EventArgs e)
         {
-            closeForm(new ProfileForm(m_User));
+            closeForm(FormsRepository.Instance[typeof(ProfileForm)]);
         }
 
         private void buttonNewsFeed_Click(object sender, EventArgs e)
         {
-            closeForm(new NewsFeedForm(m_User));
+            closeForm(FormsRepository.Instance[typeof(NewsFeedForm)]);
         }
 
         private void buttonMosiac_Click(object sender, EventArgs e)
         {
-            closeForm(new MosaicCreatorForm(m_User));
+            closeForm(FormsRepository.Instance[typeof(MosaicCreatorForm)]);
         }
 
         private void buttonTodayEvents_Click(object sender, EventArgs e)
         {
-            closeForm(new TodayEventsForm(m_User));
+            closeForm(FormsRepository.Instance[typeof(TodayEventsForm)]);
         }
 
         private void closeForm(MasterForm i_Form)
         {
             FormToOpen = i_Form;
             this.Close();
+        }
+
+        public static MasterForm CreateForm(Type i_Type)
+        {
+            MasterForm form = null;
+            if(i_Type.IsSubclassOf(typeof(MasterForm)) && i_Type.IsPublic)
+            {
+                form = Activator.CreateInstance(i_Type) as MasterForm;
+            }
+
+            return form;
         }
     }
 }

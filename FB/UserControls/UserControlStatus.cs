@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace FB.UserControls
 {
-    public partial class UserControlStatus : UserControlFacebook
+    public partial class UserControlStatus : UserControl
     {
         public UserControlStatus()
         {
@@ -30,8 +30,8 @@ namespace FB.UserControls
         {
             if (!string.IsNullOrWhiteSpace(RichTextBoxStatus.Text))
             {
-                FacebookUser.PostStatus(RichTextBoxStatus.Text);
-                FacebookUser.ReFetch();
+                LoggedInUser.Instance.PostStatus(RichTextBoxStatus.Text);
+                LoggedInUser.Instance.ReFetch();
             }
             else
             {

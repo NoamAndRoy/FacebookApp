@@ -75,7 +75,6 @@
             this.Controls.Add(this.AlbumNameLabel);
             this.Name = "UserControlAlbum";
             this.Size = new System.Drawing.Size(852, 150);
-            this.Load += new System.EventHandler(this.UserControlAlbum_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

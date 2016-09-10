@@ -168,7 +168,6 @@
             this.Name = "UserControlComment";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.Size = new System.Drawing.Size(752, 47);
-            this.Load += new System.EventHandler(this.UserControlComment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commentBindingSource)).EndInit();
             this.panelBelowCommentContent.ResumeLayout(false);

@@ -9,41 +9,43 @@ using FB.UserControls;
 namespace FB
 {
     public partial class PictureSelectionForm : Form
-    {
-        private User m_User;
-
+    { 
         public List<Image> SelectedImages { get; private set; }
 
-        public PictureSelectionForm(User i_User)
+        public PictureSelectionForm()
         {
             InitializeComponent();
-            m_User = i_User;
             SelectedImages = new List<Image>();
         }
 
         private void PictureSelectionForm_Load(object sender, EventArgs e)
         {
-            AlbumsPanel.BeginInvoke(new Action(initSelectionForm));
+            Thread thread = new Thread(new ThreadStart(initSelectionForm));
+            thread.Start();
         }
 
         private void initSelectionForm()
         {
-            int y = 0;
-
-            foreach (Album album in m_User.Albums)
-            {
-                if (album.Photos.Count > 0)
+            AlbumsPanel.Invoke(new Action(
+                () =>
                 {
-                    UserControlAlbum userAlbum = new UserControlAlbum(album);
-                    userAlbum.Location = new Point(0, y);
+                    int y = 0;
 
-                    y += userAlbum.Height + 20;
+                    foreach (Album album in LoggedInUser.Instance.Albums)
+                    {
+                        if (album.Photos.Count > 0)
+                        {
+                            UserControlAlbum userAlbum = new UserControlAlbum(album);
+                            userAlbum.Location = new Point(0, y);
 
-                    AlbumsPanel.Controls.Add(userAlbum);
+                            y += userAlbum.Height + 20;
 
-                    userAlbum.ImagesPanel.ControlAdded += UserAlbum_ControlAdded;
-                }
-            }
+                            AlbumsPanel.Controls.Add(userAlbum);
+
+                            userAlbum.ImagesPanel.ControlAdded += UserAlbum_ControlAdded;
+                        }
+                    }
+                }));
         }
 
         private void UserAlbum_ControlAdded(object sender, ControlEventArgs e)

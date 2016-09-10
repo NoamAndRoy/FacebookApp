@@ -68,6 +68,8 @@
       <DependentUpon>FacebookLoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager.cs" />
+    <Compile Include="FormsRepository.cs" />
+    <Compile Include="IUser.cs" />
     <Compile Include="TodayEventsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,9 +108,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControls\UserControlFacebook.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="LoggedInUser.cs" />
+    <Compile Include="UserAdapter.cs" />
     <Compile Include="UserControls\PostedItemExtentionMethods.cs" />
     <Compile Include="UserControls\UserControlAlbum.cs">
       <SubType>UserControl</SubType>
@@ -121,6 +122,12 @@
     </Compile>
     <Compile Include="UserControls\UserControlComment.Designer.cs">
       <DependentUpon>UserControlComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlFacebook.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserControlFacebook.Designer.cs">
+      <DependentUpon>UserControlFacebook.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UserControlPost.cs">
       <SubType>UserControl</SubType>

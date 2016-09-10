@@ -1,8 +1,8 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using FacebookWrapper.ObjectModel;
 
 namespace FB.UserControls
 {
@@ -10,12 +10,14 @@ namespace FB.UserControls
     {
         public Post FacebookPost { get; set; }
 
-        public UserControlPost(Post i_Post, User i_User)
+        public UserControlPost(Post i_Post)
         {
             InitializeComponent();
-            this.FacebookUser = i_User;
             FacebookPost = i_Post;
+        }
 
+        protected override void initialize()
+        {
             Color facebookBlue = Color.FromArgb(54, 88, 153);
 
             LabelUserName.ForeColor = facebookBlue;
@@ -23,7 +25,7 @@ namespace FB.UserControls
             LabelPostContent.ForeColor = Color.FromArgb(29, 33, 41);
             LabelLikesAmount.ForeColor = facebookBlue;
 
-            if (FacebookPost.isLikedByUser(FacebookUser))
+            if (FacebookPost.IsLikedByLoggedInUser())
             {
                 this.ButtonPostLike.BackColor = SystemColors.ButtonFace;
             }
@@ -36,22 +38,19 @@ namespace FB.UserControls
             ButtonPostLike.MouseHover += buttonPost_MouseHover;
 
             this.PanelBelowPostContent.Location = new Point(0, this.LabelPostContent.PreferredHeight + this.PanelBelowPostContent.Location.Y);
+
+            this.postBindingSource.DataSource = FacebookPost;
+            this.userBindingSource.DataSource = LoggedInUser.Instance;
+            initPost();
         }
 
         private void initPost()
         {
             this.LabelPostContent.MaximumSize = new Size(550, int.MaxValue);
-            this.LabelLikesAmount.DataBindings.Add("Text", FacebookPost.LikedBy.Count.ToString(), "");
+            this.LabelLikesAmount.DataBindings.Add("Text", FacebookPost.LikedBy.Count.ToString(), string.Empty);
 
             Thread thread = new Thread(new ThreadStart(getComments));
             thread.Start();
-        }
-
-        private void UserControlPost_Load(object sender, EventArgs e)
-        {
-            this.postBindingSource.DataSource = FacebookPost;
-            this.userBindingSource.DataSource = FacebookUser;
-            initPost();
         }
 
         private void buttonPost_MouseHover(object sender, EventArgs e)
@@ -86,7 +85,7 @@ namespace FB.UserControls
 
         private void ButtonPostLike_Click(object sender, EventArgs e)
         {
-            if(FacebookPost.isLikedByUser(FacebookUser))
+            if(FacebookPost.IsLikedByLoggedInUser())
             {
                 this.ButtonPostLike.BackColor = Color.White;
                 FacebookPost.Unlike();
@@ -96,8 +95,8 @@ namespace FB.UserControls
                 this.ButtonPostLike.BackColor = SystemColors.ButtonFace;
                 FacebookPost.Like();
             }
-          
-            FacebookUser.ReFetch();
+
+            LoggedInUser.Instance.ReFetch();
             LabelLikesAmount.Text = FacebookPost.LikedBy.Count.ToString();
         }
 
@@ -109,9 +108,9 @@ namespace FB.UserControls
                 PanelComments.Controls.Clear();
                 this.PanelWriteComment.Location = new Point(0, this.PanelWriteComment.Location.Y + this.PanelComments.Height - 2);
 
-                FacebookUser.ReFetch();
+                LoggedInUser.Instance.ReFetch();
 
-                //getComments();
+                getComments();
 
                 UserControlPost post = this;
                 Control parent = this.Parent;
@@ -130,28 +129,27 @@ namespace FB.UserControls
 
         private void getComments()
         {
-
             FacebookObjectCollection<Comment> comments = FacebookPost.Comments;
             PanelComments.Invoke(new Action(
                 () =>
-                {
-                    int y = 0;
-
-                    foreach (Comment currentComment in comments)
                     {
-                        UserControlComment comment = new UserControlComment(currentComment);
-                        comment.FacebookUser = FacebookUser;
-                        comment.Location = new Point(0, y);
-                        y += comment.Height + comment.LabelComment.Height - 20;
+                        int y = 0;
 
-                        PanelComments.Controls.Add(comment);
-                    }
+                        foreach (Comment currentComment in comments)
+                        {
+                            UserControlComment comment = new UserControlComment(currentComment);
+                            comment.Location = new Point(0, y);
+                            y += comment.Height + comment.LabelComment.Height - 20;
 
-                    if (FacebookPost.Comments.Count > 0)
-                    {
-                        this.PanelWriteComment.Location = new Point(0, y + 69);
-                    }
+                            PanelComments.Controls.Add(comment);
+                        }
+
+                        if (FacebookPost.Comments.Count > 0)
+                        {
+                            this.PanelWriteComment.Location = new Point(0, y + 69);
+                        }
                 }
+
                 ));
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using FB.UserControls;
@@ -8,13 +9,10 @@ namespace FB
 {
     public partial class ProfileForm : MasterForm
     {
-        public ProfileForm(User i_User) 
-            : base(i_User)
+        public ProfileForm() 
+            : base()
         {
             InitializeComponent();
-
-            this.userControlProfile1.FacebookUser = m_User;
-            this.userControlStatus1.FacebookUser = m_User;
 
             this.BackColor = Color.FromArgb(233, 235, 238);
 
@@ -27,16 +25,18 @@ namespace FB
             loadPosts();
         }
 
-        private void ProfileForm_Load(object sender, EventArgs e)
+        protected override void initialize()
         {
+            base.initialize();
             this.buttonProfile.BackColor = Color.LightGray;
 
-            panelPosts.BeginInvoke(new Action(loadPosts));
+            Thread thread = new Thread(new ThreadStart(loadPosts));
+            thread.Start();
         }
 
         private void loadPosts()
         {
-            FacebookObjectCollection<Post> newsFeed = m_User.NewsFeed;
+            FacebookObjectCollection<Post> newsFeed = LoggedInUser.Instance.NewsFeed;
             panelPosts.Invoke(new Action(
                 () =>
                 {
@@ -44,13 +44,14 @@ namespace FB
                     {
                         if (currentPost.Message != null)
                         {
-                            UserControlPost post = new UserControlPost(currentPost, m_User);
+                            UserControlPost post = new UserControlPost(currentPost);
                             panelPosts.Controls.Add(post);
 
                             post.Margin = new Padding(0, 0, 0, 30);
                         }
                     }
                 }
+
              ));
         }
     }

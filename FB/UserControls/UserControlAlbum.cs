@@ -26,6 +26,11 @@ namespace FB.UserControls
             SelectedImages = new List<Image>();
         }
 
+        protected override void initialize()
+        {
+            initAlbum();
+        }
+
         private void initAlbum()
         {
             AlbumNameLabel.Text = FacebookAlbum.Name;
@@ -50,11 +55,6 @@ namespace FB.UserControls
                     y += k_ImageSize + 10;
                 }
             }
-        }
-
-        private void UserControlAlbum_Load(object sender, EventArgs e)
-        {
-            ImagesPanel.BeginInvoke(new Action(initAlbum));
         }
     }
 }

@@ -19,24 +19,27 @@ namespace FB
         private PointLatLng m_UserLocation;
         private GMapOverlay m_routesOverlay;
 
-        public TodayEventsForm(User i_User)
-            : base(i_User)
+        public TodayEventsForm()
+            : base()
         {
             InitializeComponent();
             r_TodayEvents = new List<Event>();
             m_routesOverlay = new GMapOverlay("routes");
         }
 
-        private void TodayEventsForm_Load(object sender, EventArgs e)
+        protected override void initialize()
         {
+            base.initialize();
+
             this.buttonTodayEvents.BackColor = Color.LightGray;
 
-            listBoxEvents.BeginInvoke(new Action(initTodayEvents));
+            Thread thread = new Thread(new ThreadStart(initTodayEvents));
+            thread.Start();
         }
 
         private void initTodayEvents()
         {
-            foreach (Event currentEvent in m_User.Events)
+            foreach (Event currentEvent in LoggedInUser.Instance.Events)
             {
                 // use first if statement for the real purpose the second for testing
                 // if (currentEvent.Place != null && !string.IsNullOrWhiteSpace(currentEvent.Place.Name))
@@ -46,11 +49,16 @@ namespace FB
                 }
             }
 
-            listBoxEvents.DisplayMember = "Name";
-            listBoxEvents.DataSource = r_TodayEvents;
-            listBoxEvents.SelectedIndex = -1;
-            listBoxEvents.SelectedIndexChanged += listBoxEvents_SelectedIndexChanged;
-            initMap();
+            listBoxEvents.Invoke(new Action(
+                () =>
+                {
+                    listBoxEvents.DisplayMember = "Name";
+                    listBoxEvents.DataSource = r_TodayEvents;
+                    listBoxEvents.SelectedIndex = -1;
+                    listBoxEvents.SelectedIndexChanged += listBoxEvents_SelectedIndexChanged;
+
+                    initMap();
+                }));
         }
 
         private void initMap()

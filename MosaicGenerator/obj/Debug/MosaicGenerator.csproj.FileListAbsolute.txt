@@ -31,3 +31,11 @@ D:\Roy Yosef\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 
 D:\Roy Yosef\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\MosaicGenerator\obj\Debug\MosaicGenerator.csproj.GenerateResource.Cache
 D:\Roy Yosef\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\MosaicGenerator\obj\Debug\MosaicGenerator.dll
 D:\Roy Yosef\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\MosaicGenerator\obj\Debug\MosaicGenerator.pdb
+D:\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\MosaicGenerator\bin\Debug\MosaicGenerator.dll.config
+D:\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\MosaicGenerator\bin\Debug\MosaicGenerator.dll
+D:\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\MosaicGenerator\bin\Debug\MosaicGenerator.pdb
+D:\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\MosaicGenerator\obj\Debug\MosaicGenerator.csprojResolveAssemblyReference.cache
+D:\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\MosaicGenerator\obj\Debug\MosaicGenerator.Properties.Resources.resources
+D:\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\MosaicGenerator\obj\Debug\MosaicGenerator.csproj.GenerateResource.Cache
+D:\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\MosaicGenerator\obj\Debug\MosaicGenerator.dll
+D:\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\MosaicGenerator\obj\Debug\MosaicGenerator.pdb

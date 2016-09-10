@@ -14,8 +14,8 @@ namespace FB
         private List<Bitmap> m_Bitmaps;
         private Mosaic m_Mosaic;
 
-        public MosaicCreatorForm(User i_User)
-            : base(i_User)
+        public MosaicCreatorForm()
+            : base()
         {
             InitializeComponent();
         }
@@ -30,7 +30,7 @@ namespace FB
 
         private void buttonSelectImages_Click(object sender, EventArgs e)
         {
-            PictureSelectionForm selectionForm = new PictureSelectionForm(m_User);
+            PictureSelectionForm selectionForm = new PictureSelectionForm();
             if (selectionForm.ShowDialog() == DialogResult.OK)
             {
                 m_Bitmaps = new List<Bitmap>(selectionForm.SelectedImages.Count);
@@ -78,7 +78,7 @@ namespace FB
         private void buttonUploadProfileImage_Click(object sender, EventArgs e)
         {
             m_Mosaic.ImageMosaic.Save(m_Mosaic.ImageMosaic.GetHashCode() + ".png");
-            m_User.PostPhoto(m_Mosaic.ImageMosaic.GetHashCode() + ".png", textBoxTitle.Text);
+            LoggedInUser.Instance.PostPhoto(m_Mosaic.ImageMosaic.GetHashCode() + ".png", textBoxTitle.Text);
             File.Delete(m_Mosaic.ImageMosaic.GetHashCode() + ".png");
 
             MessageBox.Show("The mosaic was uploaded");

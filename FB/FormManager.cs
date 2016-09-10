@@ -1,17 +1,9 @@
-﻿using FacebookWrapper.ObjectModel;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace FB
 {
     public class FormManager
     {
-        private User m_loggedInUser;
-
-        public FormManager()
-        {
-            m_loggedInUser = null;
-        }
-
         public void Run()
         {
             Form formToOpen = openFacebookLoginForm();
@@ -31,26 +23,15 @@ namespace FB
                 FacebookLoginForm loginForm = new FacebookLoginForm();
                 loginForm.ShowDialog();
 
-                if (loginForm.UserLoginResult != null && loginForm.UserLoginResult.LoggedInUser != null)
+                if (LoggedInUser.Instance != null)
                 {
                     AppSettings.Instance.RememberMe = loginForm.RememberMe;
-
-                    if (AppSettings.Instance.RememberMe)
-                    {
-                        AppSettings.Instance.UserAccessToken = loginForm.UserLoginResult.AccessToken;
-                    }
-
-                    m_loggedInUser = loginForm.UserLoginResult.LoggedInUser;
                 }
             }
-            else
-            {
-                m_loggedInUser = FacebookWrapper.FacebookService.Connect(AppSettings.Instance.UserAccessToken).LoggedInUser;
-            }
 
-            if(m_loggedInUser != null)
+            if(LoggedInUser.Instance != null)
             {
-                newsFeedForm = new MosaicCreatorForm(m_loggedInUser);
+                newsFeedForm = FormsRepository.Instance[typeof(NewsFeedForm)];
             }
 
             return newsFeedForm;

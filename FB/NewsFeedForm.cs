@@ -15,8 +15,8 @@ namespace FB
 {
     public partial class NewsFeedForm : MasterForm
     {
-        public NewsFeedForm(User i_User)
-            : base(i_User)
+        public NewsFeedForm()
+            : base()
         {
             InitializeComponent();
 
@@ -24,12 +24,11 @@ namespace FB
 
             this.MaximumSize = new Size(882, int.MaxValue);
 
-            this.userControlStatus1.FacebookUser = i_User;
             this.userControlStatus1.ButtonSubmitStatus.Click += ButtonSubmitStatus_Click;
 
             this.buttonNewsFeed.BackColor = Color.LightGray;
 
-            userControlStatus1.PictureBoxProfile.LoadAsync(m_User.PictureSqaureURL);
+            userControlStatus1.PictureBoxProfile.LoadAsync(LoggedInUser.Instance.PictureSqaureURL);
         }
 
         private void ButtonSubmitStatus_Click(object sender, EventArgs e)
@@ -37,15 +36,16 @@ namespace FB
             panelPosts.Controls.Clear();
         }
 
-        private void ProfileForm_Load(object sender, EventArgs e)
+        protected override void initialize()
         {
+            base.initialize();
             Thread thread = new Thread(new ThreadStart(loadPosts));
             thread.Start();
         }
 
         private void loadPosts()
         {
-            FacebookObjectCollection<Post> newsFeed = m_User.NewsFeed;
+            FacebookObjectCollection<Post> newsFeed = LoggedInUser.Instance.NewsFeed;
             panelPosts.Invoke(new Action(
                 () =>
                     {
@@ -53,13 +53,14 @@ namespace FB
                         {
                             if (currentPost.Message != null)
                             {
-                                UserControlPost post = new UserControlPost(currentPost, m_User);
+                                UserControlPost post = new UserControlPost(currentPost);
                                 panelPosts.Controls.Add(post);
 
                                 post.Margin = new Padding(0, 0, 0, 30);
                             }
                         }
                     }
+
                 ));
         }
     }

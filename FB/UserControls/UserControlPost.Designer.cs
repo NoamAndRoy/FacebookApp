@@ -299,7 +299,6 @@
             this.MinimumSize = new System.Drawing.Size(751, 190);
             this.Name = "UserControlPost";
             this.Size = new System.Drawing.Size(752, 190);
-            this.Load += new System.EventHandler(this.UserControlPost_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).EndInit();
             this.PanelPostLikeAmount.ResumeLayout(false);

@@ -112,7 +112,6 @@
             this.Controls.Add(this.PictureBoxCoverPhoto);
             this.Name = "UserControlProfile";
             this.Size = new System.Drawing.Size(871, 611);
-            this.Load += new System.EventHandler(this.UserControlProfile_Load);
             this.panelProfileImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfileImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxCoverPhoto)).EndInit();

@@ -8,13 +8,13 @@ namespace FB.UserControls
 {
     public static class PostedItemExtentionMethods
     {
-        public static bool isLikedByUser(this PostedItem postedItem, User i_User)// out
+        public static bool IsLikedByLoggedInUser(this PostedItem i_PostedItem)
         {
             bool isLiked = false;
 
-            foreach (User currentUser in postedItem.LikedBy)
+            foreach (User currentUser in i_PostedItem.LikedBy)
             {
-                if (currentUser.Id == i_User.Id)
+                if (currentUser.Id == LoggedInUser.Instance.Id)
                 {
                     isLiked = true;
                     break;

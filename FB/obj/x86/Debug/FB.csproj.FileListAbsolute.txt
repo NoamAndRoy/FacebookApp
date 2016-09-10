@@ -145,3 +145,4 @@ D:\Roy Yosef\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 
 D:\Roy Yosef\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\FB\obj\x86\Debug\FB.csproj.GenerateResource.Cache
 D:\Roy Yosef\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\FB\obj\x86\Debug\FB.exe
 D:\Roy Yosef\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\FB\obj\x86\Debug\FB.pdb
+D:\Dropbox\Shared Projects\DP\C16 Ex02 NoamChapnik 208539338 RoyYosef 207127192\FB\obj\x86\Debug\FB.UserControls.UserControlFacebook.resources
