@@ -39,21 +39,7 @@ namespace FB
 
         private void loadPosts()
         {
-            FacebookObjectCollection<Post> newsFeed = LoggedInUser.Instance.NewsFeed;
-            panelPosts.Invoke(new Action(
-                () =>
-                    {
-                        foreach (Post currentPost in newsFeed)
-                        {
-                            if (currentPost.Message != null)
-                            {
-                                UserControlPost post = new UserControlPost(currentPost);
-                                panelPosts.Controls.Add(post);
-
-                                post.Margin = new Padding(0, 0, 0, 30);
-                            }
-                        }
-                    }));
+            panelPosts.LoadPosts(LoggedInUser.Instance.NewsFeed);
         }
     }
 }

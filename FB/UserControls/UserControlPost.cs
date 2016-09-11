@@ -49,8 +49,7 @@ namespace FB.UserControls
             this.LabelPostContent.MaximumSize = new Size(550, int.MaxValue);
             this.LabelLikesAmount.DataBindings.Add("Text", FacebookPost.LikedBy.Count.ToString(), string.Empty);
 
-            Thread thread = new Thread(new ThreadStart(getComments));
-            thread.Start();
+            loadAsyncComments();
         }
 
         private void buttonPost_MouseHover(object sender, EventArgs e)
@@ -110,21 +109,14 @@ namespace FB.UserControls
 
                 LoggedInUser.Instance.ReFetch();
 
-                getComments();
-
-                UserControlPost post = this;
-                Control parent = this.Parent;
-                int y = post.Location.Y;
-
-                while (post != null)
-                {
-                    post.Location = new Point(0, y);
-
-                    y += post.Height + 300;
-
-                    post = parent.GetNextControl(post, true) as UserControlPost;
-                }
+                loadAsyncComments();
             }
+        }
+
+        private void loadAsyncComments()
+        {
+            Thread thread = new Thread(new ThreadStart(getComments));
+            thread.Start();
         }
 
         private void getComments()
@@ -148,9 +140,7 @@ namespace FB.UserControls
                         {
                             this.PanelWriteComment.Location = new Point(0, y + 69);
                         }
-                }
-
-                ));
+                }));
         }
     }
 }

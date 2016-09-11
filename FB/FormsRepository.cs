@@ -50,6 +50,7 @@ namespace FB
                 if(formToReturn == null)
                 {
                     formToReturn = MasterForm.CreateForm(i_Type);
+                    r_Forms[i_Type] = formToReturn;
                 }
 
                 return formToReturn;

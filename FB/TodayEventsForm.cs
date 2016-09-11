@@ -4,8 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
 using FacebookWrapper.ObjectModel;
-using GMap.NET.WindowsForms;
-using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET;
 
@@ -13,16 +11,13 @@ namespace FB
 {
     public partial class TodayEventsForm : MasterForm
     {
-        private readonly List<Event> r_TodayEvents;
-        private PointLatLng m_UserLocation;
-        private GMapOverlay m_routesOverlay;
+        private GPSFacade r_GPS;
 
         public TodayEventsForm()
             : base()
         {
             InitializeComponent();
-            r_TodayEvents = new List<Event>();
-            m_routesOverlay = new GMapOverlay("routes");
+            r_GPS = new GPSFacade(gMapControlEvents);
         }
 
         protected override void initialize()
@@ -37,13 +32,17 @@ namespace FB
 
         private void initTodayEvents()
         {
+            List<Event> todayEvents = new List<Event>();
+            List<string> locations = new List<string>();
+
             foreach (Event currentEvent in LoggedInUser.Instance.Events)
             {
                 // use first if statement for the real purpose the second for testing
                 // if (currentEvent.Place != null && !string.IsNullOrWhiteSpace(currentEvent.Place.Name))
                 if (currentEvent.Place != null && !string.IsNullOrWhiteSpace(currentEvent.Place.Name) && currentEvent.StartTime.Value > DateTime.Now)
                 {
-                    r_TodayEvents.Add(currentEvent);
+                    todayEvents.Add(currentEvent);
+                    locations.Add(currentEvent.Place.Name);
                 }
             }
 
@@ -51,34 +50,12 @@ namespace FB
                 () =>
                 {
                     listBoxEvents.DisplayMember = "Name";
-                    listBoxEvents.DataSource = r_TodayEvents;
+                    listBoxEvents.DataSource = todayEvents;
                     listBoxEvents.SelectedIndex = -1;
                     listBoxEvents.SelectedIndexChanged += listBoxEvents_SelectedIndexChanged;
 
-                    initMap();
+                    r_GPS.InitMapAndLocations(locations, GMarkerGoogleType.green);
                 }));
-        }
-
-        private void initMap()
-        {
-            gMapControlEvents.MapProvider = GoogleMapProvider.Instance;
-            gMapControlEvents.DragButton = MouseButtons.Left;
-
-            GMapOverlay markersOverlay = new GMapOverlay("markers");
-            foreach (Event todayEvent in r_TodayEvents)
-            {
-                GeoCoderStatusCode status;
-
-                PointLatLng? point = GoogleMapProvider.Instance.GetPoint(todayEvent.Place.Name, out status);
-                if (point.HasValue)
-                {
-                    GMarkerGoogle marker = new GMarkerGoogle(point.Value, GMarkerGoogleType.green);
-                    markersOverlay.Markers.Add(marker);
-                }
-            }
-
-            gMapControlEvents.Overlays.Add(markersOverlay);
-            gMapControlEvents.Zoom = 1;
         }
 
         private void todayEventsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -88,52 +65,30 @@ namespace FB
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            GeoCoderStatusCode status;
-            PointLatLng? point = GoogleMapProvider.Instance.GetPoint(textBoxCurrentLocation.Text, out status);
+            PointLatLng point = GPSFacade.GetLocationByName(textBoxCurrentLocation.Text);
 
-            if(!point.HasValue)
+            if(point.IsEmpty)
             {
                 MessageBox.Show("Your current location was not found");
             }
             else
             {
-                m_UserLocation = point.Value;
-                gMapControlEvents.Position = point.Value;
+                r_GPS.UserLocation = point;
+                gMapControlEvents.Position = point;
                 gMapControlEvents.Zoom = 15;
             }
         }
 
         private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GeoCoderStatusCode geoCoderStatus;
-            PointLatLng? point = GoogleMapProvider.Instance.GetPoint(((Event)listBoxEvents.SelectedValue).Place.Name, out geoCoderStatus);
-
-            if (!point.HasValue)
+            try
             {
-                MessageBox.Show("Could not find the event location");
+                r_GPS.GetRouteFromUserLocation(((Event)listBoxEvents.SelectedValue).Place.Name);
+                labelError.Text = string.Empty;
             }
-            else
+            catch(Exception exception)
             {
-                if (m_UserLocation != PointLatLng.Empty)
-                {
-                    GDirections directions;
-                    DirectionsStatusCode directionStatus = GoogleMapProvider.Instance.GetDirections(out directions, m_UserLocation, point.Value, false, false, false, false, true);
-                    if (directions != null)
-                    {
-                        GMapRoute mapRoute = new GMapRoute(directions.Route, "route");
-                        m_routesOverlay.Routes.Clear();
-                        m_routesOverlay.Routes.Add(mapRoute);
-                        gMapControlEvents.Overlays.Remove(m_routesOverlay);
-                        gMapControlEvents.Overlays.Add(m_routesOverlay);
-                    }
-                    else
-                    {
-                        MessageBox.Show("There is no route between these points");
-                    }
-                }
-
-                gMapControlEvents.Position = point.Value;
-                gMapControlEvents.Zoom = 15;
+                labelError.Text = exception.Message;
             }
         }
     }

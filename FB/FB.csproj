@@ -69,7 +69,9 @@
     </Compile>
     <Compile Include="FormManager.cs" />
     <Compile Include="FormsRepository.cs" />
+    <Compile Include="GPSFacade.cs" />
     <Compile Include="IUser.cs" />
+    <Compile Include="LoadPostsExtentionMethods.cs" />
     <Compile Include="TodayEventsForm.cs">
       <SubType>Form</SubType>
     </Compile>
