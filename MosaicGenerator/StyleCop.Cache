@@ -15,6 +15,9 @@
   <project key="714433887">
     <configuration>DEBUG;TRACE</configuration>
   </project>
+  <project key="72355554">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
   <sourcecode name="Mosaic.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-05-12 20:26:32.000</styleCop>
@@ -153,7 +156,4 @@
     </timestamps>
     <violations />
   </sourcecode>
-  <project key="72355554">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
 </stylecopresultscache>

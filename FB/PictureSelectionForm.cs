@@ -40,9 +40,8 @@ namespace FB
 
                             y += userAlbum.Height + 20;
 
-                            AlbumsPanel.Controls.Add(userAlbum);
-
                             userAlbum.ImagesPanel.ControlAdded += userAlbum_ControlAdded;
+                            AlbumsPanel.Controls.Add(userAlbum);
                         }
                     }
                 }));

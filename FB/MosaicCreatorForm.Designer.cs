@@ -62,6 +62,7 @@
             // 
             this.buttonProfile.FlatAppearance.BorderSize = 0;
             this.buttonProfile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(103)))), ((int)(((byte)(170)))));
+            this.buttonProfile.Text = "Desig Patter";
             // 
             // buttonTodayEvents
             // 
@@ -261,10 +262,10 @@
             // 
             // pictureBoxMosaic
             // 
-            this.pictureBoxMosaic.Location = new System.Drawing.Point(49, 486);
+            this.pictureBoxMosaic.Location = new System.Drawing.Point(49, 479);
             this.pictureBoxMosaic.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxMosaic.Name = "pictureBoxMosaic";
-            this.pictureBoxMosaic.Size = new System.Drawing.Size(751, 456);
+            this.pictureBoxMosaic.Size = new System.Drawing.Size(751, 333);
             this.pictureBoxMosaic.TabIndex = 4;
             this.pictureBoxMosaic.TabStop = false;
             // 

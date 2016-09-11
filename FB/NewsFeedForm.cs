@@ -28,13 +28,13 @@ namespace FB
         private void buttonSubmitStatus_Click(object sender, EventArgs e)
         {
             panelPosts.Controls.Clear();
+            new Thread(loadPosts).Start();
         }
 
         protected override void initialize()
         {
             base.initialize();
-            Thread thread = new Thread(new ThreadStart(loadPosts));
-            thread.Start();
+            new Thread(loadPosts).Start();
         }
 
         private void loadPosts()

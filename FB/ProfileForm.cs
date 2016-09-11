@@ -22,7 +22,7 @@ namespace FB
         private void buttonSubmitStatus_Click(object sender, EventArgs e)
         {
             panelPosts.Controls.Clear();
-            loadPosts();
+            new Thread(loadPosts).Start();
         }
 
         protected override void initialize()
@@ -30,8 +30,7 @@ namespace FB
             base.initialize();
             this.buttonProfile.BackColor = Color.LightGray;
 
-            Thread thread = new Thread(new ThreadStart(loadPosts));
-            thread.Start();
+            new Thread(loadPosts).Start();
         }
 
         private void loadPosts()

@@ -72,7 +72,7 @@ namespace FB
             MapControl.Manager.CancelTileCaching();
         }
 
-        public void GetRouteFromUserLocation(string i_Location)
+        public void DrawRouteFromUserLocation(string i_Location)
         {
             PointLatLng location = GetLocationByName(i_Location);
 
@@ -91,8 +91,8 @@ namespace FB
                         GMapRoute mapRoute = new GMapRoute(directions.Route, "route");
                         r_routesOverlay.Routes.Clear();
                         r_routesOverlay.Routes.Add(mapRoute);
-                        r_Map.Overlays.Remove(r_routesOverlay);
-                        r_Map.Overlays.Add(r_routesOverlay);
+                        MapControl.Overlays.Remove(r_routesOverlay);
+                        MapControl.Overlays.Add(r_routesOverlay);
                     }
                     else
                     {
@@ -100,8 +100,8 @@ namespace FB
                     }
                 }
 
-                r_Map.Position = location;
-                r_Map.Zoom = 15;
+                MapControl.Position = location;
+                MapControl.Zoom = 15;
             }
         }
     }

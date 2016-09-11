@@ -83,7 +83,7 @@ namespace FB
         {
             try
             {
-                r_GPS.GetRouteFromUserLocation(((Event)listBoxEvents.SelectedValue).Place.Name);
+                r_GPS.DrawRouteFromUserLocation(((Event)listBoxEvents.SelectedValue).Place.Name);
                 labelError.Text = string.Empty;
             }
             catch(Exception exception)
